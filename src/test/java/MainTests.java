@@ -1,6 +1,8 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.io.FileNotFoundException;
+
 public class MainTests {
     @Test
     public void test_min() {
@@ -30,5 +32,10 @@ public class MainTests {
     public void test_mult_zero() {
         Main.numbers = new int[]{1, 2, 3, 0};
         Assertions.assertEquals(0, Main._mult());
+    }
+
+    @Test
+    public void test_loadFile() {
+        Assertions.assertThrows(FileNotFoundException.class, ()->{Main.loadFile("no_file");});
     }
 }
