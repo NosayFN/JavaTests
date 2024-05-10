@@ -6,4 +6,4 @@
 
 Имя файла по умолчанию - numm.rtf.
 
-![Test results on branch main](https://github.com/NosayFN/JavaTests/actions/workflows/maven.yml/badge.svg?branch=main)
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/NosayFN/JavaTests/actions/workflows/maven.yml"><img src="https://github.com/NosayFN/JavaTests/actions/workflows/maven.yml/badge.svg?branch=main" alt="Test results on branch main" style="max-width: 100%;"></a>
