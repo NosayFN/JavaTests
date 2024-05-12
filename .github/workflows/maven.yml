@@ -43,6 +43,7 @@ jobs:
           token: ${TG_TOKEN}
           message: |
             FAILURE!!!
+            
             ${{ github.actor }} created commit:
             Commit message: ${{ github.event.commits[0].message }}
             
@@ -52,18 +53,17 @@ jobs:
       - name: Report success to telegram
         if: success()
         uses: appleboy/telegram-action@master
-        env:
-          TG_TO: ${{ secrets.TELEGRAM_TO }}
-          TG_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
-          DEBUG: 1
-          PLUGIN_DEBUG: True
+#        env:
+#          TG_TO: ${{ secrets.TELEGRAM_TO }}
+#          TG_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+#          DEBUG: 1
+#          PLUGIN_DEBUG: True
         with:
-          to: ${TG_TO}
-          token: ${TG_TOKEN}
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
             Success!
-            ${TG_TO}
-            ${{ secrets.TELEGRAM_TO }}
+            
             ${{ github.actor }} created commit:
             Commit message: ${{ github.event.commits[0].message }}
             
