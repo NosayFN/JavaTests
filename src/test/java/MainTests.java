@@ -18,7 +18,7 @@ public class MainTests {
 
     @Test
     public void test_sum() {
-        int[] numbers = new int[]{1, 2, 3, 0};
+        Main.numbers = new int[]{1, 2, 3, 0};
         Assertions.assertEquals(6, Main._sum());
     }
 
@@ -29,13 +29,22 @@ public class MainTests {
     }
 
     @Test
-    public void test_mult_zero() {
+    public void test_multZero() {
         Main.numbers = new int[]{1, 2, 3, 0};
         Assertions.assertEquals(0, Main._mult());
     }
 
     @Test
     public void test_loadFile() {
-        Assertions.assertThrows(FileNotFoundException.class, ()->{Main.loadFile("no_file");});
+        try {
+            Main.loadFile("numm.rtf");
+        } catch (FileNotFoundException | WrongDataException ignored) {
+        }
+        Assertions.assertEquals(4, Main.numbers.length);
+    }
+
+    @Test
+    public void test_loadFileThrows() {
+        Assertions.assertThrows(FileNotFoundException.class, ()-> Main.loadFile("not_existing_file"));
     }
 }

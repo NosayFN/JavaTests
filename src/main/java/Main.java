@@ -1,8 +1,6 @@
 import java.io.File;
-import java.util.Scanner;
 import java.io.FileNotFoundException;
-
-import static java.lang.System.exit;
+import java.util.Scanner;
 
 public class Main {
     static int[] numbers = new int[]{};
@@ -19,11 +17,13 @@ public class Main {
             System.out.println("Sum: " + sum);
             System.out.println("Mult: " + mult);
         } catch (FileNotFoundException e) {
-            System.out.println("File not found");
+            System.out.println("File not found.");
+        } catch (WrongDataException e) {
+            System.out.println(e.getMessage());
         }
     }
 
-    public static void loadFile(String fileName) throws FileNotFoundException {
+    public static void loadFile(String fileName) throws FileNotFoundException, WrongDataException {
         if (fileName.isEmpty()) {
             fileName = "numm.rtf";
         }
@@ -32,6 +32,9 @@ public class Main {
         String numbersStr = scanner.nextLine();
         scanner.close();
         String[] numbersArr = numbersStr.split(" ");
+        if (numbersArr.length > 1000000) {
+            throw new WrongDataException("Too much numbers in a file.");
+        }
         numbers = new int[numbersArr.length];
         for (int i = 0; i < numbersArr.length; i++) {
             numbers[i] = Integer.parseInt(numbersArr[i]);
@@ -70,6 +73,9 @@ public class Main {
         long mult = 1;
         for (long i : numbers) {
             mult *= i;
+            if (mult == 0) {
+                break;
+            }
         }
         return mult;
     }

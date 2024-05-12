@@ -6,4 +6,10 @@
 
 Имя файла по умолчанию - numm.rtf.
 
+#### Результаты последнего запуска тестов:
+
 <a target="_blank" rel="noopener noreferrer" href="https://github.com/NosayFN/JavaTests/actions/workflows/maven.yml"><img src="https://github.com/NosayFN/JavaTests/actions/workflows/maven.yml/badge.svg?branch=main" alt="Test results on branch main" style="max-width: 100%;"></a>
+
+#### График зависимости времени выполнения от количества чисел в файле:
+
+![Speed diagram](./chart.png)
