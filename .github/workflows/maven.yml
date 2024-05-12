@@ -38,7 +38,7 @@ jobs:
         shell: bash
         run: |
           ls -la target/surefire-reports/
-          FAILED_TESTS=$(grep ' FAILURE!' target/surefire-reports/*.txt)
+          FAILED_TESTS=$(grep ' FAILURE!' target/surefire-reports/*.txt | sed 's/<<<//')
           echo "FAILED_TESTS=\"$FAILED_TESTS\"" >> "$GITHUB_OUTPUT"
 #          echo "$FAILED_TESTS"
       - name: Report failure to telegram
