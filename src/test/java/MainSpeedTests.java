@@ -21,7 +21,7 @@ public class MainSpeedTests {
     static String[] methods = new String[]{"_min", "_max", "_sum", "_mult"};
 
     @Test
-    public void test_min() throws IOException, NoSuchMethodException, InvocationTargetException,
+    public void measureAllMethods() throws IOException, NoSuchMethodException, InvocationTargetException,
             IllegalAccessException, WrongDataException {
         XYSeriesCollection collection = new XYSeriesCollection();
         for (String classMethod : methods) {
@@ -72,7 +72,6 @@ public class MainSpeedTests {
         }
         JFreeChart chart = ChartFactory.createXYLineChart("Speed diagram",
                 "number of integers in file", "milliseconds", collection);
-
         ChartUtils.saveChartAsPNG(new File("chart.png"), chart, 800, 600);
     }
 }

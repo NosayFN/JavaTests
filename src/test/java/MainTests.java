@@ -5,37 +5,37 @@ import java.io.FileNotFoundException;
 
 public class MainTests {
     @Test
-    public void test_min() {
+    public void _min() {
         Main.numbers = new int[]{0, 1, 2, 3, 0};
         Assertions.assertEquals(0, Main._min());
     }
 
     @Test
-    public void test_max() {
+    public void _max() {
         Main.numbers = new int[]{7, 1, 2, 3, 0};
         Assertions.assertEquals(7, Main._max());
     }
 
     @Test
-    public void test_sum() {
+    public void _sum() {
         Main.numbers = new int[]{1, 2, 3, 0};
         Assertions.assertEquals(6, Main._sum());
     }
 
     @Test
-    public void test_mult() {
+    public void _mult() {
         Main.numbers = new int[]{1, 2, 3, 7};
         Assertions.assertEquals(42, Main._mult());
     }
 
     @Test
-    public void test_multZero() {
+    public void _multZero() {
         Main.numbers = new int[]{1, 2, 3, 0};
-        Assertions.assertEquals(0, Main._mult());
+        Assertions.assertEquals(10, Main._mult());
     }
 
     @Test
-    public void test_loadFile() {
+    public void loadFile() {
         try {
             Main.loadFile("numm.rtf");
         } catch (FileNotFoundException | WrongDataException ignored) {
@@ -44,7 +44,7 @@ public class MainTests {
     }
 
     @Test
-    public void test_loadFileThrows() {
-        Assertions.assertThrows(FileNotFoundException.class, ()-> Main.loadFile("not_existing_file"));
+    public void loadFileThrows() {
+        Assertions.assertThrows(FileNotFoundException.class, ()-> Main.loadFile("numm.rtf"));
     }
 }
