@@ -39,8 +39,8 @@ jobs:
         run: |
           ls -la target/surefire-reports/
           FAILED_TESTS=$(grep ' FAILURE!' target/surefire-reports/*.txt)
+          echo "FAILED_TESTS=\"$FAILED_TESTS\"" >> "$GITHUB_OUTPUT"
           echo "$FAILED_TESTS"
-          echo "FAILED_TESTS=$FAILED_TESTS" >> "$GITHUB_OUTPUT"
       - name: Report failure to telegram
         if: failure()
         uses: appleboy/telegram-action@master
