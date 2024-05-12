@@ -36,7 +36,7 @@ jobs:
         if: failure()
         shell: bash
         run: |
-          FAILED_TESTS=$(grep '<<< FAILURE!' target/surefire-reports/org.example.MainTests.txt )
+          FAILED_TESTS=$(grep '<<< FAILURE!' target/surefire-reports/*.txt )
           echo "FAILED_TESTS=FAILED_TESTS" >> "$GITHUB_OUTPUT"
       - name: Report failure to telegram
         if: failure()
