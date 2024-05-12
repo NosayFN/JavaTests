@@ -29,7 +29,7 @@ jobs:
           distribution: 'temurin'
           cache: maven
       - name: Run the Maven package phase
-        run: mvn --batch-mode --update-snapshots package
+        run: mvn --batch-mode --update-snapshots -DskipTests package
       - name: Run tests
         run: mvn -B test --file pom.xml
       - name: Report failure to telegram
@@ -46,7 +46,7 @@ jobs:
             Repository: ${{ github.repository }}
             
             See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
-      - name: Report failure to telegram
+      - name: Report success to telegram
         if: success()
         uses: appleboy/telegram-action@master
         with:
