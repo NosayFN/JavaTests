@@ -38,7 +38,8 @@ jobs:
         shell: bash
         run: |
           ls -la target/surefire-reports/
-          FAILED_TESTS=$(grep '<<< FAILURE!' target/surefire-reports/*.txt )
+          FAILED_TESTS=$(grep '<<< FAILURE!' target/surefire-reports/*.txt)
+          grep '<<< FAILURE!' target/surefire-reports/*.txt
           echo "FAILED_TESTS=$FAILED_TESTS"
           echo "FAILED_TESTS=$FAILED_TESTS" >> "$GITHUB_OUTPUT"
       - name: Report failure to telegram
@@ -50,7 +51,7 @@ jobs:
           message: |
             FAILURE!!!
             
-            ${{ steps.failed_tests.outputs.FAILED_TESTS.value }}
+            ${{join(steps.failed_tests.outputs.FAILED_TESTS.value, '\n')}}
             
             ${{ github.actor }} created commit:
             Commit message: ${{ github.event.commits[0].message }}
