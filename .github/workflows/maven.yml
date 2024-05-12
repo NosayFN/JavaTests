@@ -41,6 +41,7 @@ jobs:
           echo "FAILED_TESTS=FAILED_TESTS" >> "$GITHUB_OUTPUT"
       - name: Report failure to telegram
         if: failure()
+        id: failed_tests
         uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_TO }}
@@ -48,7 +49,7 @@ jobs:
           message: |
             FAILURE!!!
             
-            ${{ build.outputs.FAILED_TESTS }}
+            ${{ steps.failed_tests.outputs.FAILED_TESTS }}
             
             ${{ github.actor }} created commit:
             Commit message: ${{ github.event.commits[0].message }}
