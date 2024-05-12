@@ -39,7 +39,7 @@ jobs:
         run: |
           ls -la target/surefire-reports/
           FAILED_TESTS=$(grep ' FAILURE!' target/surefire-reports/*.txt)
-          echo "FAILED_TESTS=$FAILED_TESTS" >> "$GITHUB_OUTPUT"
+          echo FAILED_TESTS="$FAILED_TESTS" >> "$GITHUB_OUTPUT"
       - name: Report failure to telegram
         if: failure()
         uses: appleboy/telegram-action@master
@@ -49,7 +49,7 @@ jobs:
           message: |
             FAILURE!!!
             
-            ${{ steps.failed_tests.outputs }}
+            ${{ steps.failed_tests.outputs.FAILED_TESTS }}
             
             ${{ github.actor }} created commit:
             Commit message: ${{ github.event.commits[0].message }}
