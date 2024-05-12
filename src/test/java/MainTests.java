@@ -31,7 +31,7 @@ public class MainTests {
     @Test
     public void _multZero() {
         Main.numbers = new int[]{1, 2, 3, 0};
-        Assertions.assertEquals(10, Main._mult());
+        Assertions.assertEquals(0, Main._mult());
     }
 
     @Test
