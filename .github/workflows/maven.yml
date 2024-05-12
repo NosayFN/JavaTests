@@ -58,8 +58,8 @@ jobs:
           DEBUG: 1
           PLUGIN_DEBUG: True
         with:
-          to: ${TG_TO}
-          token: ${TG_TOKEN}
+          to: ${{ TG_TO }}
+          token: ${{ TG_TOKEN }}
           message: |
             Success!
             ${{ github.actor }} created commit:
