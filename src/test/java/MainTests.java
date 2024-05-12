@@ -7,13 +7,13 @@ public class MainTests {
     @Test
     public void _min() {
         Main.numbers = new int[]{0, 1, 2, 3, 0};
-        Assertions.assertEquals(10, Main._min());
+        Assertions.assertEquals(0, Main._min());
     }
 
     @Test
     public void _max() {
         Main.numbers = new int[]{7, 1, 2, 3, 0};
-        Assertions.assertEquals(17, Main._max());
+        Assertions.assertEquals(7, Main._max());
     }
 
     @Test
