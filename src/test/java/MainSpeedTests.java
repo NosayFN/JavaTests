@@ -62,7 +62,7 @@ public class MainSpeedTests {
                 Main.loadFile(numsFile);
                 Assertions.assertTrue(new File(numsFile).delete());
                 Method method = Main.class.getMethod(classMethod);
-                Assertions.assertEquals(referenceVal + 1, method.invoke(Main.class));
+                Assertions.assertEquals(referenceVal, method.invoke(Main.class));
                 long duration = System.currentTimeMillis() - start;
                 System.out.println(numLenght + " ints " + classMethod + "() calculation takes "
                         + duration + " milliseconds to run");

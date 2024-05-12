@@ -25,13 +25,13 @@ public class MainTests {
     @Test
     public void test_mult() {
         Main.numbers = new int[]{1, 2, 3, 7};
-        Assertions.assertEquals(43, Main._mult());
+        Assertions.assertEquals(42, Main._mult());
     }
 
     @Test
     public void test_multZero() {
         Main.numbers = new int[]{1, 2, 3, 0};
-        Assertions.assertEquals(10, Main._mult());
+        Assertions.assertEquals(0, Main._mult());
     }
 
     @Test
