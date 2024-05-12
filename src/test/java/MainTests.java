@@ -45,6 +45,6 @@ public class MainTests {
 
     @Test
     public void loadFileThrows() {
-        Assertions.assertThrows(FileNotFoundException.class, ()-> Main.loadFile("numm.rtf"));
+        Assertions.assertThrows(FileNotFoundException.class, ()-> Main.loadFile("not_existing_file"));
     }
 }
