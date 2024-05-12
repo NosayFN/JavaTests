@@ -37,7 +37,7 @@ jobs:
         id: failed_tests
         shell: bash
         run: |
-          FAILED_TESTS=$(grep ' FAILURE!' target/surefire-reports/*.txt | sed 's/<<<//')
+          FAILED_TESTS=$(grep ' FAILURE!' target/surefire-reports/*.txt | sed 's/<<<//' | sed 's/target\/surefire-reports\///')
           echo "FAILED_TESTS<<EOFT" >> $GITHUB_OUTPUT
           echo "$FAILED_TESTS" >> $GITHUB_OUTPUT
           echo "EOFT" >> $GITHUB_OUTPUT
@@ -50,7 +50,7 @@ jobs:
           message: |
             FAILURE!!!
             
-            ${{ join(steps.failed_tests.outputs.FAILED_TESTS, '\n') }}
+            ${{ steps.failed_tests.outputs.FAILED_TESTS }}
             
             ${{ github.actor }} created commit:
             Commit message: ${{ github.event.commits[0].message }}
