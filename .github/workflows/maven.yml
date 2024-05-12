@@ -37,7 +37,7 @@ jobs:
         id: failed_tests
         shell: bash
         run: |
-          FAILED_TESTS=$(grep ' FAILURE!' target/surefire-reports/*.txt | sed 's/<<<//' | sed 's/target\/surefire-reports\///')
+          FAILED_TESTS=$(grep ' FAILURE!' target/surefire-reports/*.txt | sed 's/target\/surefire-reports\///')
           echo "FAILED_TESTS<<EOFT" >> $GITHUB_OUTPUT
           echo "$FAILED_TESTS" >> $GITHUB_OUTPUT
           echo "EOFT" >> $GITHUB_OUTPUT
