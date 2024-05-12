@@ -63,6 +63,7 @@ jobs:
           message: |
             Success!
             ${TG_TO}
+            ${{ secrets.TELEGRAM_TO }}
             ${{ github.actor }} created commit:
             Commit message: ${{ github.event.commits[0].message }}
             
