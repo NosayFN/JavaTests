@@ -33,8 +33,10 @@ jobs:
       - name: Run tests
         run: mvn -B test --file pom.xml
       - name: Get failed tests
+        shell: bash
         run: |
           FAILED_TESTS=$(grep '<<< FAILURE!' target/surefire-reports/org.example.MainTests.txt )
+          echo "FAILED_TESTS=FAILED_TESTS" >> "$GITHUB_OUTPUT"
       - name: Report failure to telegram
         if: failure()
         uses: appleboy/telegram-action@master
@@ -44,7 +46,7 @@ jobs:
           message: |
             FAILURE!!!
             
-            ${{ FAILED_TESTS }}
+            ${{ needs.build.outputs.FAILED_TESTS }}
             
             ${{ github.actor }} created commit:
             Commit message: ${{ github.event.commits[0].message }}
