@@ -38,7 +38,9 @@ jobs:
         shell: bash
         run: |
           FAILED_TESTS=$(grep ' FAILURE!' target/surefire-reports/*.txt | sed 's/<<<//')
-          echo "FAILED_TESTS=$FAILED_TESTS" >> "$GITHUB_OUTPUT"
+          echo "FAILED_TESTS<<EOFT" >> $GITHUB_OUTPUT
+          echo "$FAILED_TESTS" >> $GITHUB_OUTPUT
+          echo "EOFT" >> $GITHUB_OUTPUT
       - name: Report failure to telegram
         if: failure()
         uses: appleboy/telegram-action@master
