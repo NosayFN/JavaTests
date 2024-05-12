@@ -22,17 +22,24 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-java@v4
+      - name: Setup JAVA
+        uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'temurin'
-      - name: Run the Maven verify phase
-        run: mvn --batch-mode --update-snapshots verify
-      - uses: appleboy/telegram-action@master
+          cache: maven
+      - name: Run the Maven package phase
+        run: mvn --batch-mode --update-snapshots package
+      - name: Run tests
+        run: mvn -B test --file pom.xml
+      - name: Report failure to telegram
+        if: failure()
+        uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
+            FAILURE!
             ${{ github.actor }} created commit:
             Commit message: ${{ github.event.commits[0].message }}
             
