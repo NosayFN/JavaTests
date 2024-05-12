@@ -33,6 +33,7 @@ jobs:
       - name: Run tests
         run: mvn -B test --file pom.xml
       - name: Get failed tests
+        if: failure()
         shell: bash
         run: |
           FAILED_TESTS=$(grep '<<< FAILURE!' target/surefire-reports/org.example.MainTests.txt )
