@@ -35,11 +35,15 @@ jobs:
       - name: Report failure to telegram
         if: failure()
         uses: appleboy/telegram-action@master
+        env:
+          FAILED_TESTS: $(grep '<<< FAILURE!' target/surefire-reports/org.example.MainTest.txt )
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
             FAILURE!!!
+            
+            ${{ FAILED_TESTS }}
             
             ${{ github.actor }} created commit:
             Commit message: ${{ github.event.commits[0].message }}
