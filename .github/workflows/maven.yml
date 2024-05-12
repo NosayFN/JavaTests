@@ -37,7 +37,7 @@ jobs:
         id: failed_tests
         shell: bash
         run: |
-          FAILED_TESTS=$(grep ' FAILURE!' target/surefire-reports/*.txt | sed 's/target\/surefire-reports\///')
+          FAILED_TESTS=$(grep ' FAILURE!' target/surefire-reports/*.txt | grep -v 'run:' | sed 's/target\/surefire-reports\///')
           echo "FAILED_TESTS<<EOFT" >> $GITHUB_OUTPUT
           echo "$FAILED_TESTS" >> $GITHUB_OUTPUT
           echo "EOFT" >> $GITHUB_OUTPUT
@@ -48,14 +48,9 @@ jobs:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
-            FAILURE!!!
+            ошибка при запуске тестов:
             
             ${{ steps.failed_tests.outputs.FAILED_TESTS }}
-            
-            ${{ github.actor }} created commit:
-            Commit message: ${{ github.event.commits[0].message }}
-            
-            Repository: ${{ github.repository }}
             
             See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
       - name: Report success to telegram
@@ -66,10 +61,5 @@ jobs:
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
             все ок
-            
-            ${{ github.actor }} created commit:
-            Commit message: ${{ github.event.commits[0].message }}
-            
-            Repository: ${{ github.repository }}
             
             See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
