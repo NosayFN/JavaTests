@@ -49,7 +49,7 @@ jobs:
           message: |
             FAILURE!!!
             
-            ${{ steps.failed_tests.outputs.FAILED_TESTS.value }}
+            ${{ join(steps.failed_tests.outputs.FAILED_TESTS, '\n') }}
             
             ${{ github.actor }} created commit:
             Commit message: ${{ github.event.commits[0].message }}
