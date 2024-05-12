@@ -55,6 +55,7 @@ jobs:
         env:
           TG_TO: ${{ secrets.TELEGRAM_TO }}
           TG_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          DEBUG: 1
         with:
           to: ${TG_TO}
           token: ${TG_TOKEN}
