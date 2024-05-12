@@ -56,6 +56,7 @@ jobs:
           TG_TO: ${{ secrets.TELEGRAM_TO }}
           TG_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
           DEBUG: 1
+          PLUGIN_DEBUG: True
         with:
           to: ${TG_TO}
           token: ${TG_TOKEN}
